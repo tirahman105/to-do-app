@@ -12,21 +12,29 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { useAppDispatch } from "@/redux/hook";
+import { addTodo } from "@/redux/features/todoSlice";
 
 const AddTodoModal = () => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
+  const dispatch = useAppDispatch();
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    console.log({ task, description });
+    // console.log({ task, description });
+    const taskDetails = {
+      title: task,
+      description: description,
+    };
+    dispatch(addTodo(taskDetails));
     console.log("btn clicked");
   };
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-primary-gradient text-black text-xl font-bold">
+        <Button className="bg-primary-gradient text-xl font-bold">
           Add Todo
         </Button>
       </DialogTrigger>
@@ -63,7 +71,9 @@ const AddTodoModal = () => {
           </div>
           <div className="flex justify-end">
             <DialogClose asChild>
-              <Button type="submit">Save changes</Button>
+              <Button className="bg-primary-gradient" type="submit">
+                Save changes
+              </Button>
             </DialogClose>
           </div>
         </form>

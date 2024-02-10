@@ -15,7 +15,7 @@ const TodoFilter = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="bg-primary-gradient text-black text-xl font-bold">
+        <Button className="bg-primary-gradient text-xl font-bold">
           Filter
         </Button>
       </DropdownMenuTrigger>
