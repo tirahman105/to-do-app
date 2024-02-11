@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { addTodo } from "@/redux/features/todoSlice";
 
 const AddTodoModal = () => {
@@ -23,11 +23,15 @@ const AddTodoModal = () => {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
+    const randomString = Math.random().toString(36).substring(2, 7);
+
     // console.log({ task, description });
     const taskDetails = {
+      id: randomString,
       title: task,
       description: description,
     };
+    console.log(taskDetails);
     dispatch(addTodo(taskDetails));
     console.log("btn clicked");
   };
